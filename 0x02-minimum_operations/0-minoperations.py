@@ -29,7 +29,6 @@ def get_factors(n):
     ret = []
     while n != 1:
         ret.append(primes[n])
-        print(primes[n])
         n = n // primes[n]
 
     return ret
@@ -37,7 +36,6 @@ def get_factors(n):
 
 def minOperations(n):
     listi = get_factors(n)
-    print(listi)
     sum = 0
     for i in listi:
         sum += i
