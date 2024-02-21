@@ -37,6 +37,8 @@ def get_factors(n):
 def minOperations(n):
     listi = get_factors(n)
     sum = 0
+    if n < 0:
+        return 0
     for i in listi:
         sum += i
     return sum
