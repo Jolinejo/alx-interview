@@ -5,7 +5,7 @@ min ops
 
 import math as mt
 
-maxn = 100001
+maxn = 100001 * 3
 
 primes = [i for i in range(maxn)]
 
