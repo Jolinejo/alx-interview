@@ -5,7 +5,7 @@ min ops
 
 import math as mt
 
-maxn = 100001 * 3
+maxn = 100001 * 5
 
 primes = [i for i in range(maxn)]
 
@@ -37,7 +37,7 @@ def get_factors(n):
 def minOperations(n):
     listi = get_factors(n)
     sum = 0
-    if n < 0:
+    if n <= 0:
         return 0
     for i in listi:
         sum += i
