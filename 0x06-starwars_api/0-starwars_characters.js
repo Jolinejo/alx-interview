@@ -14,6 +14,7 @@ request(url, (error, response, body) => {
   for (let i = 0; i < data.characters.length; i++) {
     const url2 = data.characters[i];
     request(url2, (error, response, body) => {
+      if (error) console.log(error);
       console.log(JSON.parse(body).name);
     });
   }
