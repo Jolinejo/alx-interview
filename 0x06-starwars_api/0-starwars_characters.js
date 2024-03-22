@@ -4,18 +4,28 @@ const args = process.argv;
 // Request URL
 const url = `https://swapi-api.alx-tools.com/api/films/${args[2]}/`;
 
+function makeReq (charUrl) {
+  return new Promise((resolve, reject) => {
+    request(charUrl, (error, response, body) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(JSON.parse(body).name);
+      }
+    });
+  });
+}
+
 request(url, (error, response, body) => {
-  // Printing the error if occurred
   if (error) console.log(error);
 
-  // Printing status code
-  // Printing body
   const data = JSON.parse(body);
-  for (let i = 0; i < data.characters.length; i++) {
-    const url2 = data.characters[i];
-    request(url2, (error, response, body) => {
-      if (error) console.log(error);
-      console.log(JSON.parse(body).name);
+  const characterPromises = data.characters.map(characterUrl => makeReq(characterUrl));
+  Promise.all(characterPromises)
+    .then(characters => {
+      characters.map(chara => console.log(chara));
+    })
+    .catch(error => {
+      console.log(error);
     });
-  }
 });
