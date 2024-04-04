@@ -1,9 +1,3 @@
-#!/usr/bin/python3
-"""
-coin change module
-"""
-
-
 def makeChange(coins, total):
     """
     returns the fewest number of coins needed to meet a given amount total
@@ -15,9 +9,10 @@ def makeChange(coins, total):
 
     dp[0] = 0
 
-    for i in range(1, total + 1):
-        for coin in coins:
-            if coin <= i:
-               dp[i] = min(dp[i], dp[i - coin] + 1)
+    coins.sort(reverse=True)
+
+    for coin in coins:
+        for amount in range(coin, total + 1):
+            dp[amount] = min(dp[amount], dp[amount - coin] + 1)
 
     return dp[total] if dp[total] != float('inf') else -1
